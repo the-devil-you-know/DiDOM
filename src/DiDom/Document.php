@@ -489,6 +489,44 @@ class Document
     }
 
     /**
+     * @return \DiDom\Element
+     */
+    public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null)
+    {
+        if (!$oneOrNull = $this->oneOrNull($expression, $type, $wrapNode, $contextNode))
+            throw new \LogicException("Нет элементов $expression");
+
+        return $oneOrNull;
+    }
+
+    /**
+     * @return \DiDom\Element|null
+     */
+    public function oneOrNull($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null)
+    {
+        $elements = $this->find($expression, $type, $wrapNode, $contextNode);
+        $count = count($elements);
+        if ($count === 0)
+            return null;
+
+        if ($count !== 1)
+            throw new \LogicException("Больше одного элемета ($count) $expression");
+
+        return $elements[0];
+    }
+
+    /**
+     * @return \DiDom\Document
+     */
+    public function aToSpan()
+    {
+        foreach ($this->find('a') as $a) {
+            $a->replace(new Element('span', $a->text()));
+        }
+        return $this;
+    }
+
+    /**
      * @param DOMElement|DOMText|DOMAttr $node
      *
      * @return Element|string
