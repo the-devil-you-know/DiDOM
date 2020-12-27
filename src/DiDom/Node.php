@@ -386,6 +386,7 @@ abstract class Node
     public function oneOrNullInDocument($expression, $type = Query::TYPE_CSS, $wrapNode = true)
     {
         return $this->getDocument()->oneOrNull($expression, $type, $wrapNode, $this->node);
+    }
     
 
     /**
