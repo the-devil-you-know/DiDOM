@@ -355,6 +355,38 @@ abstract class Node
 
         return $ownerDocument->first($expression, $type, $wrapNode, $this->node);
     }
+    
+    /**
+     * @return \DiDom\Element
+     */
+    public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true)
+    {
+        return $this->toDocument()->one($expression, $type, $wrapNode);
+    }
+
+    /**
+     * @return \DiDom\Element|null
+     */
+    public function oneOrNull($expression, $type = Query::TYPE_CSS, $wrapNode = true)
+    {
+        return $this->toDocument()->oneOrNull($expression, $type, $wrapNode);
+    }
+
+    /**
+     * @return \DiDom\Element
+     */
+    public function oneInDocument($expression, $type = Query::TYPE_CSS, $wrapNode = true)
+    {
+        return $this->getDocument()->one($expression, $type, $wrapNode, $this->node);
+    }
+
+    /**
+     * @return \DiDom\Element|null
+     */
+    public function oneOrNullInDocument($expression, $type = Query::TYPE_CSS, $wrapNode = true)
+    {
+        return $this->getDocument()->oneOrNull($expression, $type, $wrapNode, $this->node);
+    
 
     /**
      * Searches for an node in the DOM tree for a given XPath expression.
