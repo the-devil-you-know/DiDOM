@@ -515,6 +515,18 @@ class Document
         return $elements[0];
     }
 
+	/**
+	 * @return \DiDom\Element|null
+	 */
+	public function lastOrNull($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null)
+	{
+		$elements = $this->find($expression, $type, $wrapNode, $contextNode);
+		if (count($elements) === 0)
+			return null;
+
+		return end($elements);
+	}
+
     /**
      * @return \DiDom\Document
      */
