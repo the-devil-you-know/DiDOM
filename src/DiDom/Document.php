@@ -491,10 +491,10 @@ class Document
     /**
      * @return \DiDom\Element
      */
-    public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null)
+    public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null, $errMsg = null)
     {
         if (!$oneOrNull = $this->oneOrNull($expression, $type, $wrapNode, $contextNode))
-            throw new \LogicException("Нет элементов $expression");
+            throw new \LogicException("Нет элементов $expression" . ($errMsg ? "\n$errMsg" : ''));
 
         return $oneOrNull;
     }
