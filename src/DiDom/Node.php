@@ -359,9 +359,9 @@ abstract class Node
     /**
      * @return \DiDom\Element
      */
-    public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true)
+    public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true, $errMsg = null)
     {
-        return $this->toDocument()->one($expression, $type, $wrapNode);
+        return $this->toDocument()->one($expression, $type, $wrapNode, $errMsg);
     }
 
     /**
@@ -375,9 +375,9 @@ abstract class Node
     /**
      * @return \DiDom\Element
      */
-    public function oneInDocument($expression, $type = Query::TYPE_CSS, $wrapNode = true)
+    public function oneInDocument($expression, $type = Query::TYPE_CSS, $wrapNode = true, $errMsg = null)
     {
-        return $this->getDocument()->one($expression, $type, $wrapNode, $this->node);
+        return $this->getDocument()->one($expression, $type, $wrapNode, $this->node, $errMsg);
     }
 
     /**
