@@ -361,7 +361,7 @@ abstract class Node
      */
     public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true, $errMsg = null)
     {
-        return $this->toDocument()->one($expression, $type, $wrapNode, $errMsg);
+        return $this->toDocument()->one($expression, $type, $wrapNode, null, $errMsg);
     }
 
     /**
