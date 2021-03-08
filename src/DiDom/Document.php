@@ -493,7 +493,7 @@ class Document
      */
     public function one($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null, $errMsg = null)
     {
-        if (!$oneOrNull = $this->oneOrNull($expression, $type, $wrapNode, $contextNode))
+        if (!$oneOrNull = $this->oneOrNull($expression, $type, $wrapNode, $contextNode, $errMsg))
             throw new \LogicException("Нет элементов $expression" . ($errMsg ? "\n$errMsg" : ''));
 
         return $oneOrNull;
@@ -502,7 +502,7 @@ class Document
     /**
      * @return \DiDom\Element|null
      */
-    public function oneOrNull($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null)
+    public function oneOrNull($expression, $type = Query::TYPE_CSS, $wrapNode = true, $contextNode = null, $errMsg = null)
     {
         $elements = $this->find($expression, $type, $wrapNode, $contextNode);
         $count = count($elements);
@@ -510,7 +510,7 @@ class Document
             return null;
 
         if ($count !== 1)
-            throw new \LogicException("Больше одного элемета ($count) $expression");
+            throw new \LogicException("Больше одного элемета ($count) $expression" . ($errMsg ? "\n$errMsg" : ''));
 
         return $elements[0];
     }
